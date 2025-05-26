@@ -19,6 +19,8 @@ cd ~/KillFire
 pip install -r requirements.txt
 ```
 ## Run default simulation
+This shows the forest fire spreading model and three agents on the enviroment.\
+It has no RL property used, just random simulation.
 ```bash
 cd ~/KillFIre
 PYTHONPATH=.. python main.py
