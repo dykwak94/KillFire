@@ -14,4 +14,16 @@ A multi-agent RL environment using PettingZoo and RLlib, simulating forest fire 
 ## Setup
 
 ```bash
+git clone https://github.com/dykwak94/KillFire.git
+cd ~/KillFire
 pip install -r requirements.txt
+```
+## Run default simulation
+```bash
+cd ~/KillFIre
+PYTHONPATH=.. python main.py
+```
+## Train model
+```bash
+cd ~/KillFire/train
+PYTHONPATH=.. python train_rllib.py
