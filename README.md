@@ -27,3 +27,10 @@ PYTHONPATH=.. python main.py
 ```bash
 cd ~/KillFire/train
 PYTHONPATH=.. python train_rllib.py
+```
+## Training Result (400 time steps per episode, 100 episodes)
+### Parameters
+`FIRE_SPREAD_PROB = 0.01`\
+`initial_fires=3`
+![Episode Return Mean](Tensorboard/ray_tune_env_runners_episode_return_mean.svg)
+
