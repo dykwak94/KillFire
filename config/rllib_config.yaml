@@ -1,0 +1,25 @@
+# config/rllib_config.yaml
+
+env: KillFire-v0
+framework: torch
+rollouts:
+  num_rollout_workers: 0
+multiagent:
+  policies:
+    shared_policy:
+      None
+      - [20, 20, 1]
+      - 6
+      - {}
+  policy_mapping_fn: "lambda agent_id: 'shared_policy'"
+training:
+  train_batch_size: 400
+  model:
+    conv_filters:
+      - [16, [3, 3], 1]
+      - [32, [3, 3], 1]
+      - [64, [3, 3], 1]
+    conv_activation: relu
+    post_fcnet_hiddens: [256, 128]
+stop:
+  training_iteration: 100

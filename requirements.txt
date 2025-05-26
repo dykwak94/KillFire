@@ -1,0 +1,8 @@
+ray[rllib]
+pettingzoo
+gymnasium
+matplotlib
+numpy
+imageio
+PyYAML  # For rllib_config.yaml reading if used
+
