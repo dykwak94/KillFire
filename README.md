@@ -1,7 +1,10 @@
 # KillFire: Forest Fire Suppression Simulator
 
 A multi-agent RL environment using PettingZoo and RLlib, simulating forest fire suppression by helicopter, drone, and groundcrew.
+📄 [View KillFire Report (PDF)](docs/KillFire_Report.pdf)
+
 <img src="image_dump/KillFire_screenshot.png" alt="KillFire Screenshot" width="200"/>
+
 ## Features
 
 - 20x20 grid world: tree, fire, suppressed states
@@ -25,7 +28,7 @@ It has no RL property used, just random simulation.
 cd ~/KillFIre
 PYTHONPATH=.. python main.py
 ```
-## Train model
+## Train 
 ```bash
 cd ~/KillFire/train
 PYTHONPATH=.. python train_rllib.py
