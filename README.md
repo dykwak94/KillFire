@@ -38,12 +38,12 @@ PYTHONPATH=.. python train_rllib.py
 `FIRE_SPREAD_PROB = 0.01`\
 `initial_fires=3`\
 `SUPPRESSED_COEFF = 988 `\
-`ONFIRE_COEFF = 2.83`\
+`ONFIRE_COEFF = 2.83`
 
 
 <p align="center">
-  <img src="Compare%20with%20Random_results/MAPPO%20vs%20Random%20%28m%3D988%2C%20n%3D2.83%29.png" alt="Comparison" height="300"/>
+  <img src="Compare%20with%20Random_results/MAPPO%20vs%20Random%20%28m%3D988%2C%20n%3D2.83%29.png" alt="Comparison" height="250"/>
   &nbsp;&nbsp;&nbsp;
-  <img src="image_dump/KillFire%20Demo.gif" alt="KillFire Demo" height="300"/>
+  <img src="image_dump/KillFire%20Demo.gif" alt="KillFire Demo" height="250"/>
 </p>
 
