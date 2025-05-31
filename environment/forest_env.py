@@ -1,4 +1,6 @@
 # environment/forest_env.py
+# built to be able to use with RL_Lib
+# Last Update: 2025.05.31 
 
 import numpy as np
 from pettingzoo import ParallelEnv
@@ -16,6 +18,7 @@ AGENT_SUPPRESS_RANGE = {
 GRID_SIZE = 20
 FIRE_SPREAD_PROB = 0.01
 TREE, FIRE, SUPPRESSED = 0, 1, 2
+INITIAL_FIRES = 2
 CELL_STATE_NAMES = ['tree', 'fire', 'suppressed']
 
 MOVE_MAP = {
@@ -33,11 +36,16 @@ ACTION_MEANINGS = [
     "suppress",
     "stay"
 ]
+#optimized hyperparameter for MAPPO when INITIAL_FIRES=2, FIRE_SPREAD_PROB=0.1
+#SUPPRESSED_COEFF = 988
+#ONFIRE_COEFF = 2.83
+SUPPRESSED_COEFF = 988 
+ONFIRE_COEFF = 2.83
 
 class ForestFireEnv(ParallelEnv):
     metadata = {"render_modes": ["human"], "name": "KillFire-v0"}
 
-    def __init__(self, grid_size=GRID_SIZE, max_steps=50, initial_fires=3):
+    def __init__(self, grid_size=GRID_SIZE, max_steps=50, initial_fires=INITIAL_FIRES):
         super().__init__()
         self.grid_size = grid_size
         self.max_steps = max_steps
@@ -93,6 +101,8 @@ class ForestFireEnv(ParallelEnv):
         for agent in self.agents:
             act = actions[agent]
             pos = self.agent_positions[agent]
+            if self.grid[pos[0]][pos[1]]==1:
+                act = 4
             if act in [0, 1, 2, 3]:  # Move
                 dx, dy = MOVE_MAP[act]
                 nx, ny = pos[0] + dx, pos[1] + dy
@@ -113,7 +123,7 @@ class ForestFireEnv(ParallelEnv):
         self.agent_positions = new_positions
 
         # Suppression phase
-        fires_suppressed = 0
+        fires_suppressed = np.sum(self.grid == SUPPRESSED)
         for agent in self.agents:
             act = actions[agent]
             if act == 4:  # Suppress
@@ -137,7 +147,7 @@ class ForestFireEnv(ParallelEnv):
             self.grid[x, y] = FIRE
 
         # Reward: +1 per fire suppressed, -1 * number of current fire cells
-        reward = fires_suppressed - 0.3* np.count_nonzero(self.grid == FIRE)
+        reward = SUPPRESSED_COEFF*fires_suppressed - ONFIRE_COEFF* np.count_nonzero(self.grid == FIRE)
         for agent in self.agents:
             self._rewards[agent] = reward
             self._cumulative_rewards[agent] += reward

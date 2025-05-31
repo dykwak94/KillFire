@@ -30,9 +30,12 @@ PYTHONPATH=.. python main.py
 cd ~/KillFire/train
 PYTHONPATH=.. python train_rllib.py
 ```
-## Training Result (400 time steps per episode, 100 episodes)
+## Training Result (Batch size = 400, Iteration = 1000)
 ### Parameters
 `FIRE_SPREAD_PROB = 0.01`\
-`initial_fires=3`
-![Episode Return Mean](Tensorboard/ray_tune_env_runners_episode_return_mean.svg)
+`initial_fires=3`\
+`SUPPRESSED_COEFF = 988 `\
+`ONFIRE_COEFF = 2.83`\
+
+![Episode Return Mean](Compare with Random_results/MAPPO vs Random (m=988, n=2.83).png)
 

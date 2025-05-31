@@ -1,44 +1,6 @@
 # main.py
-'''
-from environment.forest_env import ForestFireEnv, AGENT_NAMES
-import time
-import numpy as np
-
-def random_policy(obs):
-    # Suppress if standing on fire, else move randomly
-    grid = obs[..., 0]
-    moves = [0, 1, 2, 3, 5]  # Up, Down, Left, Right, Stay
-    suppress = 4
-    for agent in AGENT_NAMES:
-        # center of grid (where agent starts)
-        pos = np.argwhere(grid != 0)
-        if pos.size > 0:
-            # Prefer suppress if fire at current pos
-            if grid[pos[0][0], pos[0][1]] == 1:
-                return suppress
-    return np.random.choice(moves)
-
-if __name__ == "__main__":
-    env = ForestFireEnv(max_steps=100, initial_fires=5)
-    obs, infos = env.reset()
-    done = False
-    step = 0
-    while not done:
-        actions = {}
-        for agent in env.agents:
-            # Always suppress if fire at current pos, else random
-            x, y = env.agent_positions[agent]
-            if env.grid[x, y] == 1:
-                actions[agent] = 4
-            else:
-                actions[agent] = np.random.randint(0, 6)
-        obs, rewards, terms, truncs, infos = env.step(actions)
-        env.render()
-        step += 1
-        done = all(truncs.values()) or all(terms.values())
-        time.sleep(0.3)
-    print("Episode finished.")
-'''
+# Check whether you're installation of KillFire is done.
+# Last Update : 2025.05.31
 from environment.forest_env import ForestFireEnv, AGENT_NAMES
 import time
 import numpy as np
@@ -95,3 +57,45 @@ for ep in range(1, EPISODES+1):
     folder = os.path.join(base_dir, f"ep_{ep:02d}")
     gif_name = os.path.join(base_dir, f"ep_{ep:02d}.gif")
     make_gif_from_folder(folder, gif_name)
+
+'''
+Without visualization version
+from environment.forest_env import ForestFireEnv, AGENT_NAMES
+import time
+import numpy as np
+
+def random_policy(obs):
+    # Suppress if standing on fire, else move randomly
+    grid = obs[..., 0]
+    moves = [0, 1, 2, 3, 5]  # Up, Down, Left, Right, Stay
+    suppress = 4
+    for agent in AGENT_NAMES:
+        # center of grid (where agent starts)
+        pos = np.argwhere(grid != 0)
+        if pos.size > 0:
+            # Prefer suppress if fire at current pos
+            if grid[pos[0][0], pos[0][1]] == 1:
+                return suppress
+    return np.random.choice(moves)
+
+if __name__ == "__main__":
+    env = ForestFireEnv(max_steps=100, initial_fires=5)
+    obs, infos = env.reset()
+    done = False
+    step = 0
+    while not done:
+        actions = {}
+        for agent in env.agents:
+            # Always suppress if fire at current pos, else random
+            x, y = env.agent_positions[agent]
+            if env.grid[x, y] == 1:
+                actions[agent] = 4
+            else:
+                actions[agent] = np.random.randint(0, 6)
+        obs, rewards, terms, truncs, infos = env.step(actions)
+        env.render()
+        step += 1
+        done = all(truncs.values()) or all(terms.values())
+        time.sleep(0.3)
+    print("Episode finished.")
+'''
