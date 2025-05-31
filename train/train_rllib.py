@@ -50,7 +50,9 @@ if __name__ == "__main__":
     stop = {
         "training_iteration": ITERATION
     }
-
+    # Ensure results directory exists
+    os.makedirs("../results", exist_ok=True)
+    
     results = tune.run(
         "PPO",
         config=config.to_dict(),
