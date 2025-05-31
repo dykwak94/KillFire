@@ -33,7 +33,12 @@ PYTHONPATH=.. python main.py
 cd ~/KillFire/train
 PYTHONPATH=.. python train_rllib.py
 ```
-## Training Result (Batch size = 400, Iteration = 1000)
+Check the results using Tensorboard
+```bash
+tensorboard --logdir ~/KillFire/results/
+```
+
+## Training Result (Batch size = 400, Iteration = 10000)
 ### Parameters
 `FIRE_SPREAD_PROB = 0.01`\
 `initial_fires=3`\
