@@ -55,7 +55,8 @@ if __name__ == "__main__":
         "PPO",
         config=config.to_dict(),
         stop=stop,
-        storage_path="/Users/davisk/KillFire/results", # for MacOS
+        storage_path="../results"
+        #storage_path="/Users/davisk/KillFire/results", # for MacOS
         #storage_path="/home/davisk/KillFire/results", # for Ubuntu
         checkpoint_at_end=True,
         checkpoint_freq=10,
